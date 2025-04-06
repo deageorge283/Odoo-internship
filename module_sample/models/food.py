@@ -1,9 +1,11 @@
-rom odoo import models, fields , api
+from odoo import models, fields , api
 from odoo.exceptions import ValidationError
+from datetime import date
+
 class Food(models.Model):
 	_name = "food.food"
 	_description = "Model For Food"
-	_rec_name = "served_time"
+	_rec_name = "partner_id"
 
 
 	# fields
@@ -20,16 +22,17 @@ class Food(models.Model):
 	blog = fields.Html(string="Blog")
 	sale_order_id = fields.Many2one('sale.order',string="Sale Order")
 	invoice_id = fields.Many2one('account.move',string="Related Invoice")
+
 	_sale_created = fields.Boolean(string="Sale Order Created")
 
-	def create_sale_order(self):
-		sale_order = self.env['sale.order'].create([{
-			'partner_id':23
-			}])
-		self._sale_created = True
-		return sale_order
 
 
+	# @api.model
+	# def default_get(self, fields_list):
+	# 	res = super(Food, self).default_get(fields_list)
+	# 	res['is_satisfied'] = True
+	# 	return res
+	
 	def create_invoice(self):
 		pass
 	def create_contacts(self):
@@ -41,7 +44,6 @@ class Food(models.Model):
 	# Create
 	# Extend     = Extending base logic + Custom logic (base+custom)
 	# Override   = Is Removing all the base Function and Setting Your logic
-
 	@api.model
 	def create(self,vals):
 
@@ -80,10 +82,72 @@ class Food(models.Model):
 	
 
 	def unlink(self):
-		for i in self:
-			if i.is_satisfied == True:
-				raise ValidationError("You cannot delete a Satisfied Records")
 		res = super(Food, self).unlink()
 
 		return res
-    
+
+	# CRUD
+	# C  = Create
+	def create_sale_order(self):
+		sale_order = self.env['sale.order'].create([{
+			'partner_id':23
+			}])
+		self._sale_created = True
+		return sale_order
+	
+
+	# R  - Read
+	# Search and Browse
+
+	def purchase_records(self):
+		foood = self.env['food.food'].search([('price','>',100),('is_satisfied','=',True)])
+		print("The Result is === ",foood)
+
+		food_browse = self.env['food.food'].browse(5)
+		print("Browse Output is",food_browse)
+
+
+	# U 
+	# Update - Write
+
+	def change_the_record(self):
+		food_browse = self.env['food.food'].browse(self.id)
+		food_browse.write({
+			'review':"The value changed because of the write function",
+			'quantity':1000
+
+		})
+
+	# D
+	# Delete - Unlink
+
+	def delet_the_rec(self):
+		food_browse = self.env['food.food'].browse(self.id)
+		food_browse.unlink()
+
+	# oprators 
+	# = , <  ,  >   ,  =>   ,  <=  , like  , ilike  , | (or)
+
+	@api.model
+	def default_get(self, fields_list):
+		res = super(Food, self).default_get(fields_list)
+		res['review'] = "The Value is setted before saving"
+		res['is_satisfied'] = True
+		return res
+	
+
+	
+	date_of_birth = fields.Date(string="Date of Birth")
+	age = fields.Integer(string="Age" , compute="_compute_age")
+
+	@api.depends('date_of_birth')
+	def _compute_age(self):
+		for rec in self:
+			if rec.date_of_birth: # To avoid the error
+				today = date.today()
+				born = rec.date_of_birth
+				rec.age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+			else:
+				rec.age = 0
+			
+		
