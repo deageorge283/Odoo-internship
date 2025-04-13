@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top-level menu -->
+    <menuitem id="pepsico_main_menu" name="PepsiCo Sales" sequence="10"/>
+
+    <!-- Submenu for Sales Records -->
+    <menuitem id="menu_pepsico_sales_record"
+              name="Sales Records"
+              parent="pepsico_main_menu"
+              action="action_pepsico"
+              sequence="1"/>
+</odoo>
