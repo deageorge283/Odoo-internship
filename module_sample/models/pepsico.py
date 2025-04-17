@@ -13,6 +13,7 @@ class Pepsico(models.Model):
     product_ids = fields.Many2many('product.product','pepsico_sales_product_rel','sales_id', 'product_id',string="Products Sold")
     partner_id = fields.Many2one('res.partner', string="Distributor Contact")
     sale_order_ref = fields.Many2one('sale.order', string="Related Sale Order")
+    
 
 
 
