@@ -2,5 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_model_one,access.model.one,model_model_one,module_sample.group_module_sample,1,1,1,1
 access_model_one_user,access.model.one.user,model_model_one,module_sample.sub_group_module_sample,1,1,1,1
 access_model_one_lines,access.model.one.lines,model_model_one_lines,module_sample.group_module_sample,1,1,1,1
-access_pepsico,access.pepsico,model_pepsico,module_sample.group_module_sample,1,1,1,1
+
 
