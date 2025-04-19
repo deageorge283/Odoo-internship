@@ -1,2 +1,2 @@
-from . import model_one,pepsico
+from . import model_one
 
