@@ -33,8 +33,6 @@
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
-        'views/pepsico_view.xml',
-        'views/pepsico_menu.xml',
         'views/model_one_lines.xml',
         'views/model_one_view.xml',
         'views/menu.xml',
