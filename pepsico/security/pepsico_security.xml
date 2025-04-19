@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+	<record id="pepsico_category" model="ir.module.category">
+		<field name="name">Pepsico Module </field>
+		<field name="description">Category for Training purposes</field>
+		<field name="sequence">45</field>
+	</record>
+	
+	<record id="group_pepsico" model="res.groups">
+		<field name="name"> Pepsi Group</field>
+		<field name="category_id" ref="pepsico_category" />
+	</record>
+	
+	<record id="sub_group_pepsico" model="res.groups">
+		<field name="name">Pepsi Sub Group</field>
+		<field name="category_id" ref="pepsico_category" />
+		<field name="implied_ids" eval="[(4, ref('pepsico.group_pepsico'))]" />
+	</record>
+    
+	<record id="record_rule_for_model_pepsico" model="ir.rule">
+		<field name="name"> Rule for Pepsico</field>
+		<field name="model_id" ref="pepsico.model_model_pepsico" />
+		<field name="groups" eval="[(4, ref('pepsico.group_pepsico'))]" />
+		<field name="domain_force">[('create_uid', '=', user.id)]</field>
+		<field name="perm_create" eval="1" />
+		<field name="perm_write" eval="1" />
+		<field name="perm_unlink" eval="1" />
+		<field name="perm_read" eval="1" />
+	</record>
+
+	<record id="record_rule_for_model_pepsico_product" model="ir.rule">
+    <field name="name">Rule for PepsiCo Product</field>
+    <field name="model_id" ref="pepsico.model_model_pepsico"/>
+    <field name="groups" eval="[(4, ref('pepsico.group_pepsico'))]" />
+    <field name="domain_force">[('create_uid', '=', user.id)]</field>
+    <field name="perm_create" eval="1"/>
+    <field name="perm_write" eval="1"/>
+    <field name="perm_unlink" eval="1"/>
+    <field name="perm_read" eval="1"/>
+</record>
+
+
+</odoo>
