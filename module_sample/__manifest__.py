@@ -33,6 +33,8 @@
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
+        'data/sequence.xml',
+         #'data/cron.xml',
         'views/model_one_lines.xml',
         'views/model_one_view.xml',
         'views/menu.xml',
