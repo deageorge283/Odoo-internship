@@ -83,9 +83,6 @@ class ModelOne(models.Model):
 				record.is_special = True
 			else:
 				record.is_special = False
-	def increase_age(self):
-		for record in self:
-			record.age += 1
 	
 	@api.constrains('email')
 	def check_email(self):
@@ -98,6 +95,18 @@ class ModelOne(models.Model):
         ('unique_email_user', 'unique (email)', 'This email already exists. Email must be unique'),
     ]
     
+	# method for scheduler
+	def increase_age(self):
+		records = self.search([]) # fetch all records
+		for record in records:
+			print("age before :", record.age)
+			record.age += 1
+			print("age after :", record.age)    
+	
+	def change_description(self):
+		for record in self:
+			record.description = "Description added through server action"
+	
 	
 	
 	
