@@ -1,2 +1,2 @@
 from . import model_one
-from . import sale
+from . import sales
