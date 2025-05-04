@@ -38,6 +38,7 @@
         'views/model_one_lines.xml',
         'views/model_one_view.xml',
         'views/menu.xml',
+        'sales_view.xml',
         'views/food_view.xml'
         ],
     'test': [],
