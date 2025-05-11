@@ -106,6 +106,21 @@ class ModelOne(models.Model):
 	def change_description(self):
 		for record in self:
 			record.description = "Description added through server action"
+	def send_my_email(self):
+		template = self.env.ref('sample.my_sample_email_template')
+		for record in self:
+			values = {'subject' : 'My Custom Subject via Method'}
+			template.send_mail(record.id, force_send=True, email_values=values)
+	
+	def show_sale(self):
+		return {
+            'type': 'ir.actions.act_window',
+            'name': 'Sale Order',
+            'res_model': 'sale.order',
+            'view_mode': 'list,form',
+            'target': 'current',
+            'domain' : [('id', 'in', self.sale_ids.ids)]
+        }
 	
 	
 	
