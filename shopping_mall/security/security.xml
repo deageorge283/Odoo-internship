@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Create a security category for your module -->
+    <record id="shopping_mall_category" model="ir.module.category">
+        <field name="name">Shopping Mall</field>
+        <field name="description">Access rights for Shopping Mall users</field>
+        <field name="sequence">45</field>
+    </record>
+
+    <!-- Create the group being referenced in ir.model.access.csv -->
+    <record id="group_shopping_mall" model="res.groups">
+        <field name="name">Shopping Mall User</field>
+        <field name="category_id" ref="shopping_mall.shopping_mall_category"/>
+    </record>
+</odoo>
+
+
