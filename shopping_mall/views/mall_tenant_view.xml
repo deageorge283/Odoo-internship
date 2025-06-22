@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+    <record id="view_mall_tenant_form" model="ir.ui.view">
+        <field name="name">mall.tenant.form</field>
+        <field name="model">mall.tenant</field>
+        <field name="arch" type="xml">
+            <form string="Mall Tenant">
+                <group>
+                    <field name="name"/>
+                    <field name="contact"/>
+                    <field name="email"/>
+                    <field name="shop_ids"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mall_tenant_tree" model="ir.ui.view">
+        <field name="name">mall.tenant.tree</field>
+        <field name="model">mall.tenant</field>
+        <field name="arch" type="xml">
+            <list string="Mall Stores">
+                <field name="name"/>
+                <field name="contact"/>
+                <field name="email"/>
+                <field name="shop_ids"/>
+            </list>
+
+        </field>
+    </record>
+
+    <record id="action_mall_tenant" model="ir.actions.act_window">
+        <field name="name">Mall Tenant</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mall.tenant</field>
+        <field name="view_mode">list,form</field>
+    </record>
+	</data>
+
+</odoo>

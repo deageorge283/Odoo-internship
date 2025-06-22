@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu: Shopping Mall -->
+    <menuitem id="menu_for_mall" 
+       name="Shopping Mall" 
+       sequence="2" />
+
+    <!-- Submenu: Store Management -->
+    <menuitem id="mall_store_menu" 
+    name="Stores" 
+    action="action_mall_shop"
+    parent="menu_for_mall" 
+    sequence="1"/>
+
+    <menuitem id="mall_tenant_menu" 
+    name="Tenant" 
+    action="action_mall_tenant"
+    parent="menu_for_mall" 
+    sequence="2"/>
+
+    <menuitem id="mall_contract_menu" 
+    name="Contract Details" 
+    action="action_mall_contract"
+    parent="menu_for_mall" 
+    sequence="3"/>
+
+</odoo>

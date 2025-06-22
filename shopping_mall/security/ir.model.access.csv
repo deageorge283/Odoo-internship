@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mall_shop,access.mall.shop,model_mall_shop,shopping_mall.group_shopping_mall,1,1,1,1
+access_mall_tenant,access.mall.tenant,model_mall_tenant,shopping_mall.group_shopping_mall,1,1,1,1
+access_mall_contract,access.mall.contract,model_mall_contract,shopping_mall.group_shopping_mall,1,1,1,1
